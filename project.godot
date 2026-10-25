@@ -1,0 +1,68 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="vrttle"
+run/main_scene="res://scenes/playspace.tscn"
+config/features=PackedStringArray("4.7", "C#", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+XRToolsUserSettings="*uid://bqgb8i74tm0t"
+XRToolsRumbleManager="*uid://by853dk86g1qw"
+
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[dotnet]
+
+project/assembly_name="vrttle"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot-xr-tools/plugin.cfg")
+
+[layer_names]
+
+3d_physics/layer_1="Static World"
+3d_physics/layer_2="Dynamic World"
+3d_physics/layer_3="Pickable Objects"
+3d_physics/layer_17="Held Objects"
+3d_physics/layer_18="Player Hands"
+3d_physics/layer_20="Player Body"
+3d_physics/layer_21="Pointable Objects"
+3d_physics/layer_23="UI Objects"
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
+
+[rendering]
+
+rendering_device/driver.windows="d3d12"
+anti_aliasing/quality/msaa_3d=0
+anti_aliasing/quality/use_taa=false
+anti_aliasing/quality/screen_space_aa=0
+lights_and_shadows/directional_shadow/size=512
+lights_and_shadows/directional_shadow/soft_shadow_filter_quality=0
+textures/default_filters/anisotropic_filtering_level=0
+xr/shaders/enabled=true
+
+[xr]
+
+openxr/enabled=true
+openxr/reference_space=1
+openxr/foveation_level=3
+openxr/foveation_dynamic=true
+shaders/enabled=true

@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://ik7ibe3rx3bg"]
+
+[ext_resource type="Script" uid="uid://cr52a05kra7ka" path="res://scripts/playspace.gd" id="1_play"]
+[ext_resource type="PackedScene" uid="uid://clc5dre31iskm" path="res://addons/godot-xr-tools/xr/start_xr.tscn" id="2_start"]
+[ext_resource type="PackedScene" uid="uid://bqqvi51ddpn7u" path="res://scenes/player.tscn" id="3_player"]
+[ext_resource type="Script" uid="uid://iq70bafqkfbl" path="res://scripts/Rpcs3Launcher.cs" id="4_launch"]
+[ext_resource type="Script" uid="uid://cv0xflenkl2qc" path="res://scripts/SkylanderPortalIpc.cs" id="5_ipc"]
+[ext_resource type="Script" uid="uid://ybwga5v43lv8" path="res://scripts/Rpcs3WindowCapture.cs" id="6_cap"]
+[ext_resource type="Script" uid="uid://dhpccuo8au8h5" path="res://scripts/DualShockVrMapper.cs" id="7_pad"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_tv"]
+size = Vector2(1.6, 0.9)
+
+[sub_resource type="StandardMaterial3D" id="Mat_frame"]
+albedo_color = Color(0.08, 0.08, 0.1, 1)
+
+[node name="Playspace" type="Node3D" unique_id=996099217]
+script = ExtResource("1_play")
+
+[node name="StartXR" parent="." unique_id=1099061875 instance=ExtResource("2_start")]
+render_target_size_multiplier = 0.7
+
+[node name="XROrigin3D" parent="." unique_id=621882830 instance=ExtResource("3_player")]
+
+[node name="DesktopCamera" type="Camera3D" parent="." unique_id=445189257]
+transform = Transform3D(1, 0, 0, 0, 0.96, 0.28, 0, -0.28, 0.96, 0, 1.6, 1.4)
+current = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=575088345]
+transform = Transform3D(0.866, -0.354, 0.354, 0, 0.707, 0.707, -0.5, -0.612, 0.612, 0, 4, 2)
+shadow_enabled = false
+light_energy = 0.85
+
+[node name="Rpcs3Launcher" type="Node" parent="." unique_id=756098487]
+script = ExtResource("4_launch")
+
+[node name="SkylanderPortalIpc" type="Node" parent="." unique_id=1396099776]
+script = ExtResource("5_ipc")
+
+[node name="Rpcs3WindowCapture" type="Node" parent="." unique_id=1733602901]
+script = ExtResource("6_cap")
+
+[node name="DualShockVrMapper" type="Node" parent="." unique_id=566398925]
+script = ExtResource("7_pad")
+
+[node name="TV" type="Node3D" parent="." unique_id=1502236052]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55, -2.15)
+
+[node name="Frame" type="MeshInstance3D" parent="TV" unique_id=277821401]
+transform = Transform3D(1.08, 0, 0, 0, 1.12, 0, 0, 0, 1, 0, 0, -0.02)
+mesh = SubResource("QuadMesh_tv")
+surface_material_override/0 = SubResource("Mat_frame")
+
+[node name="Screen" type="MeshInstance3D" parent="TV" unique_id=514511845]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.01)
+mesh = SubResource("QuadMesh_tv")
+
+[node name="StatusLabel" type="Label3D" parent="." unique_id=881821761]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.15, -1.9)
+pixel_size = 0.002
+modulate = Color(0.7, 0.9, 1, 1)
+text = "vrttle"
+font_size = 28
+
+[node name="Shelf" type="CSGBox3D" parent="." unique_id=1838769491]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0.85, -0.15)
+use_collision = true
+size = Vector3(1.6, 0.06, 0.35)
